@@ -20,12 +20,11 @@ jobs:
       - name: get packets
         run: sudo apt-get install pandoc texlive-latex-base texlive-fonts-recommended texlive-extra-utils texlive-latex-extra
       - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
-      - name: generate PDFs
+      - name: generate_PDFs
         run: |
           cd ${{ github.workspace }}
           pandoc README.md -o test.pdf
           ls
-          echo test, and deploy your project.
       - uses: actions/create-release@v1
         id: create_release
         env:
@@ -35,7 +34,7 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-      - name: Upload Release Asset
+      - name: release_assets
         id: upload-release-asset 
         uses: actions/upload-release-asset@v1
         env:
@@ -45,3 +44,4 @@ jobs:
           asset_path: ./test.pdf
           asset_name: test.pdf
           asset_content_type: application/pdf
+          
