@@ -1,0 +1,40 @@
+name: Release_notes
+
+# Controls when the workflow will run
+on:
+  push:
+    tags: '*'
+    branches-ignore: # Pushes on these branches won't start a build
+      - 'autodelivery**'
+      - 'bump-**'
+      - 'renovate/**'
+    paths-ignore: # Pushes that change only these file won't start the workflow
+      - 'README.md'
+      - 'CHANGELOG.md'
+      - 'LICENSE'
+  pull_request:
+    branches: # Only pull requests based on these branches will start the workflow
+      - master
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  release:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: initialition # installs the necessary to produce pdf files from markdown
+        run: apt-get install pandoc texlive-latex-base texlive-fonts-recommended texlive-extra-utils texlive-latex-extra
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: |
+          cd ${{ github.workspace }}
+          pandoc README.md -o test.pdf
+          ls
+          echo test, and deploy your project.
+  
