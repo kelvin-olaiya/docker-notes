@@ -1,6 +1,5 @@
 name: Release_notes
 
-# Controls when the workflow will run
 on:
   push:
     tags: '*'
