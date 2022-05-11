@@ -3,6 +3,7 @@ name: Release_notes
 on:
   push:
     tags: '*'
+    branches_ignore:
       - 'autodelivery**'
       - 'bump-**'
       - 'renovate/**'
@@ -10,6 +11,7 @@ on:
       - 'CHANGELOG.md'
       - 'LICENSE'
   pull_request:
+    branches:
       - master
   workflow_dispatch:
 
@@ -25,5 +27,25 @@ jobs:
           cd ${{ github.workspace }}
           pandoc README.md -o test.pdf
           ls
+      - uses: actions/create-release@v1
+        id: create_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: release_assets
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./test.pdf
+          asset_name: test.pdf
+          asset_content_type: application/pdf
+
       
       
