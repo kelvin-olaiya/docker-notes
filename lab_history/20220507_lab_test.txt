@@ -1,0 +1,43 @@
+    1  sudo groupadd -G sudo test
+    7  sudo visudo
+    
+    9  sudo systemctl stop NetworkManager
+   10  sudo systemctl disable NetworkManager
+   11  sudo systemctl mask NetworkManager
+   
+   12  sudo systemctl unmask systemd-networkd.service
+   13  sudo systemctl enable systemd-networkd.service
+   14  sudo systemctl start systemd-networkd.service
+   15  sudo systemctl disable systemd-resolved.service
+   
+   16  sudo systemctl stop systemd-resolved.service
+   17  sudo nano /etc/netplan/01-network-manager-all.yaml 
+   18  sudo netplan apply 
+   25  ifconfig 
+   27  ping 8.8.8.8
+   28  nslookup www.google.com
+   29  sudo nano /etc/resolv.conf 
+   30  nslookup www.google.com
+   
+   31  sudo apt install xrdp 
+   32  sudo service xrdp status
+   33  sudo adduser xrdp ssl-cert
+   34  sudo nano /etc/xrdp/startwm.sh 
+   35  sudo service xrdp restart 
+   
+   36  timedatectl status
+   37  sudo apt install ntp
+   38  netstat -na | less
+   39  sudo nano /etc/ntp.conf 
+   40  sudo service ntp restart 
+   41  sudo service ntp status
+   
+   42  sudo apt install bind9 bind9utils bind9-doc
+   43  service bind9 status
+   45  sudo nano /etc/default/named 
+   46  netstat -na | more
+   47  cd /etc/bind/
+   49  sudo nano named.conf
+   50  sudo nano named.conf.options 
+   51  sudo service bind9 restart
+   53  nslookup www.google.it 192.168.134.200

@@ -1,0 +1,38 @@
+    htop: mostra i processi in esecuzione
+    /etc/fstab: file per vedere le partizioni montate 
+    4  touch  testing_acl.txt
+    5  setfattr -n user.test -v test testing_acl.txt 
+    6  getfattr -d testing_acl.txt 
+    7  rm testing_acl.txt 
+    
+   10  sudo apt update
+   13  sudo apt install net-tools
+   15  route
+   16  route -c
+   18  netstat -na
+   20  sudo apt install openssh-server
+   21  sudo ufw allow ssh: `ufw` sta per Uncomplicated firewall
+   
+   22  nano /lib/system
+   23  nano /lib/systemd/
+   24  
+   sudo apt install open-vm-tools
+   35  sudo apt install open-vm-tools open-vm-tools-desktop
+   
+   37  adduser test
+   38  sudo adduser test
+   39  cat /etc/passwd
+   40  cat /etc/shadow
+   
+   45  tar xzf VMwareTools-10.3.23-16594550.tar.gz 
+   46  sudo tar xzf VMwareTools-10.3.23-16594550.tar.gz 
+   
+   51  systemctl stop cups
+   52  systemctl start cups
+   53  sudo systemctl start cups
+   54  systemctl status
+   55  service --status all
+   
+   57  systemd
+   61  systemctl status ssh
+   
