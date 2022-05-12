@@ -168,7 +168,7 @@ docker rmi imagename1 imagename2 ... imagenameN
 
 ## Running a Docker container
 
-Containers can be interactive. By executing the *run* subcommand with the `-i` and `-t` options you can obtain interactive shell access (using stdin / stdout / stderr) into the container.
+Containers can be interactive. By executing the *run* subcommand with the `-i` (short for `--interactive`) and `-t` (short for `--tty`) options you can obtain interactive shell access (using stdin / stdout / stderr) into the container.
 
 ```bash
 docker run -it ubuntu
@@ -216,7 +216,7 @@ CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
 ....           ....      .....     ....      ....      ....      ....
 ```
 
-To view all containers (active and inactive), run:
+To view all containers (active and inactive), run (`-a` is short for `--all`):
 
 ```
 docker ps -a
@@ -230,7 +230,7 @@ CONTAINER ID   IMAGE         COMMAND    CREATED          STATUS                 
 f223a82cc664   ubuntu        "bash"     3 weeks ago      Exited (0) 3 weeks ago                cranky_beaver
 ```
 
-To view the latest created container use the `-l` option:
+To view the latest created container use the `-l` (short for `--latest`) option:
 
 ```bash
 docker ps -l
@@ -260,7 +260,7 @@ or
 docker start -ia d9b100f2f636
 ```
 
-Where `-i` attach the container's STDIN anc the `-a` option attach STDOUT, STDERR and forwards signals.
+Where `-i` (short for `--interactive`) attach the container's STDIN anc the `-a` (short for `--attach`) option attach STDOUT, STDERR and forwards signals.
 
 The container will start and you can use *docker ps* to see its status.
 
@@ -272,7 +272,7 @@ Once you've decided you no longer need a container anymore, remove it with the *
 docker rm festive_williams
 ```
 
-The is a way to remove all containers at once by using command substitution. The **ps* with the `-q` options will list only the container's *ids*. Therefor running `docker ps -aq` will list all containers ids. The overall command is:
+The is a way to remove all containers at once by using command substitution. The **ps* with the `-q` (short for `--quiet`) options will list only the container's *ids*. Therefor running `docker ps -aq` will list all containers ids. The overall command is:
 
 ```bash
 docker rm $(docker ps -aq)
