@@ -88,3 +88,30 @@ Here is an example daemon.json with several options specified. Only specify the 
 
 Restart Docker for the changes to take effect.
 
+### Networking from container point of view
+
+The type of network a container uses, wheter is a bridge, an overlay, a macvlan network, or a custom network plugin, is transparent from within the container. Assuming the container is not running with the *none network driver*, from the container's point of view, it has a network interface with:
+* an IP address
+* a gateway
+* a routing table
+* a DNS service
+* and other network details...
+
+### Published ports
+
+By default, when you create a container, it does not publish any of it's ports to the outside world.
+
+To make a port available to services outside of Docker, or to Docker containers which are not connected to the container's network, user the `--publish` or the `-p` flag. This creates a firewall rule which maps a container port to a port on the Docker host.
+
+| Flag value | Description                                                      |
+| -----------|------------------------------------------------------------------|
+| -p 8080:80 | Map TCP port 80 in the container to port 8080 on the docker host |
+| -p 192.168.1.100:8080:80 | Map TCP port 80 in the container to port 8080 on the Docker host for connections to IP 192.168.1.100 of the host |
+| -p 8080:80/udp | Map UDP port 80 in the container to port 8080 on the Docker host. |
+| -p 8080:80/tcp -p 8080:80/udp | Map TCP port 80 in the container to TCP port 8080 on the Docker host, and map UDP port 80 in the container to UDP port 8080 on the Docker host. |
+
+## IP addresses and hostname of container
+
+By default, the containers is assigned an IP address for every Docker network it connect to. The IP address is assigned from the pool assigned to the network, so the Docker daemon effectively acts as a DHCP server for each container. Each network also has a default subnet mask and gateway.
+
+When the container starts, it can only be connected to a single network, using the `--network`, you can specify the IP address assigned to the container on that network using the `--ip` or `--ip6` flags.
