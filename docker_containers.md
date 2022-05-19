@@ -205,3 +205,24 @@ If you execute the `exit` command in the shell the container stops.
 ## Detach a foreground container and turn it stopped but non exited
 
 To detach the container you must type ***CTRL + p*** and ***CTRL + q***, the container stops but does not exit. You can attach againg to the container with the `docker attach` subcommand.
+
+## Mount shared Storage to containers
+
+The `-v` option points a **directory within the container** to a **directory in the host's filesystem**. Any changes made in those directory will be visible at both locations.
+
+```bash
+docker run -p 8888:80 --name web -d -v /home/kelvin/htdocs:/usr/local/apache2/htdocs httpd
+```
+With the previous command we want to start a container named **web** (`--name` option) from an image called **httpd** mapping:
+* The container's port number *80* to the host port number *8888* (using `-p`);
+* The container directory */usr/local/apache2/* to the host */home/kelvin/htdocs* directory (using `-v`).
+
+> NOTE: When mapping directories from/to containers, you must pay attention to files permissions.
+
+## Autoremove container on exit
+
+The `--rm` flag automatically removes the container when it exits.
+
+```bash
+docker run -it --rm ubuntu
+```
