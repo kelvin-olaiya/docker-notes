@@ -115,3 +115,19 @@ To make a port available to services outside of Docker, or to Docker containers 
 By default, the containers is assigned an IP address for every Docker network it connect to. The IP address is assigned from the pool assigned to the network, so the Docker daemon effectively acts as a DHCP server for each container. Each network also has a default subnet mask and gateway.
 
 When the container starts, it can only be connected to a single network, using the `--network`, you can specify the IP address assigned to the container on that network using the `--ip` or `--ip6` flags.
+
+In the same way a container's hostname by default assumes the value of the container's ID in Docker. You can override the hostname by using `--hostname`.
+
+However you can connect an existing container to a different network using `docker network connect`, you can use the `--ip` or `--ip6` flags on that command to specify the container's IP address on that additional network. When connecting yo an existing network using `docker network connect`, you can use the `--alias` flag to specify an additional network alias for the container on that network.
+
+## DNS services of a container
+
+By default, a container inherits the DNS settings of the **Docker daemon**, including the */etc/hosts* and */etc/resolv.conf*. You can override these settings on a per-container basis when creating a container.
+
+| Flag value | Description |
+|------------|-------------|
+| --dns | The IP address of a DNS server. To specify multiple DNS servers, use multiple --dns flags. If the container cannot reach any of the specified IP addresses, Google's public 8.8.8.8 DNS server is added |
+| --dns-search | A DNS search domain to search non-fully-qualified hostnames. To specify multiple DNS search prefixes, use multiple --dns-search flags.|
+| --dns-opt | A key-value pair representing a DNS option and its value |
+| --hostname | The hostname a container uses for itself |
+
