@@ -264,11 +264,32 @@ docker inspect container2
 
 Container 2 belongs to two network (eth0 and eth1). It joined the default bridge network when it was launched and isolated_nw when it was attached to it.
 
+We can see this by attaching to container2 and examine the container's network stack
+
+```bash
+docker attach container2
+```
+
+Then in the container's shell run:
+
+```bash
+ifconfig -a
+```
+
+Now inspect container3:
 
 ```bash
 docker inspect container3
 ```
 
 Container 3 is not attached to the deafault bridge network.
+
+When you specify an IP address by using the `--ip` or `--ip6` flag while using a *user-defined* network the configuration is preserved as part of the container's configuration and will be applied when the container is reloaded (after saving the image).
+
+Since there's non guarantee that the container's subnet will not change when the Docker daemon restarts, assigned IP addresses are not preserved when using *non user-defined* networks.
+
+## Docker embedded DNS server
+
+The Docker embedded DNS server enables name resolution for containers connected to a given network. This means that any connected container can ping another container **on the same network** by its container name.
 
 
