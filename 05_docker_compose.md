@@ -214,10 +214,10 @@ You can use the top-level networks section to specify a more complex network con
 
 The top level volumes section lets you create named volumes for your application.
 
-Volumes are used to store data outside containers. This is handy if you destroy a container and create a new one, your data will not be lost with the container, but it'll be persisted on the host machine in a volume.
+Volumes are used to store data outside containers. This is handy if you destroy a container and create a new one, your data will not be lost with the container, but it'll be persisted on the host machine in a volume.
 
 Our example uses one volume currently that is used by the Redis image:
-
+
 ```yaml
 version: '3'
 services:
