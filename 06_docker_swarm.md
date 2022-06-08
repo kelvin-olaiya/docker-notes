@@ -54,7 +54,7 @@ docker service scale mystack_tcpreplayservice=2
 
 ```bash
 docker node ls
-```
+```
 
 ```bash
 docker node update --availability drain node-1
