@@ -46,7 +46,7 @@ apt-cache policy docker-ce
 Install docker
 
 ```bash
-sudo apt install docker-ce docker-ce-cli containered.io
+sudo apt install docker-ce docker-ce-cli containerd.io
 ```
 
 Check that docker daemon is running
