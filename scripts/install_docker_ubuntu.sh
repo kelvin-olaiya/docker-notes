@@ -13,6 +13,6 @@ sudo apt update
 
 apt-cache policy docker-ce
 
-sudo apt install -y docker-ce docker-ce-cli containered.io
+sudo apt install -y docker-ce docker-ce-cli containerd.io
 
 sudo systemctl status docker
