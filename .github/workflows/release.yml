@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: get_packets
         run: sudo apt-get install pandoc texlive-latex-base texlive-fonts-recommended texlive-extra-utils texlive-latex-extra
-      - uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
+      - uses: actions/checkout@cbb722410c2e876e24abbe8de2cc27693e501dcb
       - name: generate_PDFs
         run: |
           cd ${{ github.workspace }}
